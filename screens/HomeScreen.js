@@ -46,7 +46,7 @@ const HomeScreen = () => {
     const promotions = useSelector((state) => state.promotions);
     const partners = useSelector((state) => state.partners);
     const scaleValue = useRef(new Animated.Value(0)).current;
-    const scaleAnimation = Animated.timing(scaleValue, {
+    const scaleAnimation = (scaleValue, {
         toValue: 1,
         duration: 1500,
         useNativeDriver: true

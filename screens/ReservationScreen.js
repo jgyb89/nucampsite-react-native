@@ -38,6 +38,11 @@ const ReservationScreen = () => {
 
         return (
             <ScrollView >
+            <Animatable.View
+                animation='zoomIn'
+                duration={2000}
+                date={1000}
+            >
                 <View style={styles.formRow}>
                     <Text style={styles.formLabel}>Number of Campers:</Text>
                     <Picker
@@ -121,6 +126,7 @@ const ReservationScreen = () => {
                     </View>
 
                 </Modal>
+                </Animatable.View>
             </ScrollView>  
         )
     }
