@@ -18,7 +18,7 @@ const CampsiteInfoScreen = ({ route }) => {
     const dispatch = useDispatch();
 
     const handleSubmit = () => {
-        const newComment = { 
+        const newComment = {
             author,
             rating,
             text,
@@ -52,7 +52,11 @@ const CampsiteInfoScreen = ({ route }) => {
     };
 
     return (
-        <Animatable.View animation='fadeInUp' duration={2000} delay={1000}>
+        <Animatable.View
+            animation='fadeInUp'
+            duration={2000}
+            delay={1000}
+        >
             <FlatList
                 data={comments.commentsArray.filter(
                     (comment) => comment.campsiteId === campsite.id

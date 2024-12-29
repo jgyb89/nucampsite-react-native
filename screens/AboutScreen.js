@@ -4,6 +4,7 @@ import { Avatar, ListItem } from "react-native-elements";
 import { useSelector } from "react-redux";
 import { baseUrl } from "../shared/baseUrl";
 import Loading from "../components/LoadingComponent";
+import * as Animatable from 'react-native-animatable';
 
 const Mission = () => {
     return (
@@ -22,24 +23,36 @@ const AboutScreen = () => {
     if (partners.isLoading) {
         return (
             <ScrollView>
+            <Animatable.View
+                animation='fadeInDown'
+                duration={2000}
+                delay={1000}
+            >
                 <Mission />
                 <Card>
                     <Card.Title>Community partners</Card.Title>
                     <Card.Divider />
                     <Loading />
                 </Card>
+                </Animatable.View>
             </ScrollView>
-        )
+        );
     }
     if (partners.errMess) {
         return (
             <ScrollView>
+            <Animatable.View
+                animation='fadeInDown'
+                duration={2000}
+                delay={1000}
+            >
                 <Mission />
                 <Card>
                     <Card.Title>Community partners</Card.Title>
                     <Card.Divider />
                     <Text>{partners.errMess}</Text>
                 </Card>
+                </Animatable.View>
             </ScrollView>
         )
     }

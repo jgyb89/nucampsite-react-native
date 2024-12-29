@@ -5,6 +5,7 @@ import { toggleFavorite } from '../features/favorites/favoritesSlice';
 import { Avatar, ListItem } from 'react-native-elements';
 import Loading from '../components/LoadingComponent'
 import { baseUrl } from '../shared/baseUrl';
+import * as Animatable from 'react-native-animatable';
 
 const FavoriteScrteen = ({ navigation }) => {
     const { campsitesArray, isLoading, errMess } = userSelector(
@@ -18,32 +19,32 @@ const FavoriteScrteen = ({ navigation }) => {
         return (
             <SwipeRow rightOpenValue={-100}>
                 <View style={styles.deleteView}>
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.deleteTouchable}
                         onPress={() => Alert.alert(
-    'Delete Favorite?',
-    'Are you sure you wish to delete the favorite campsite ' +
-        campsite.name +
-        '?',
-    [
-        {
-            text: 'Cancel',
-            onPress: () =>
-                console.log(
-                    campsite.name + 'Not Deleted'
-                ),
-            style: 'cancel'
-        },
-        {
-            text: 'OK',
-            onPress: () =>
-                dispatch(
-                    toggleFavorite(campsite.id)
-                )
-        }
-    ],
-    { cancelable: false }
-)}
+                            'Delete Favorite?',
+                            'Are you sure you wish to delete the favorite campsite ' +
+                            campsite.name +
+                            '?',
+                            [
+                                {
+                                    text: 'Cancel',
+                                    onPress: () =>
+                                        console.log(
+                                            campsite.name + 'Not Deleted'
+                                        ),
+                                    style: 'cancel'
+                                },
+                                {
+                                    text: 'OK',
+                                    onPress: () =>
+                                        dispatch(
+                                            toggleFavorite(campsite.id)
+                                        )
+                                }
+                            ],
+                            { cancelable: false }
+                        )}
                     >
                         <Text style={styles.deleteText}>Delete</Text>
                     </TouchableOpacity>
@@ -103,6 +104,10 @@ const FavoriteScrteen = ({ navigation }) => {
         );
     }
     return (
+        <Animatable.View
+                    animation='fadeInRightBig'
+                    duration={2000}
+                >
         <FlatList
             data={campsitesArray.filter((campsite) =>
                 favorites.includes(campsite.id)
@@ -110,6 +115,7 @@ const FavoriteScrteen = ({ navigation }) => {
             renderItem={renderFavoriteItem}
             keyExtractor={(item) => item.id.toString()}
         />
+        </Animatable.View>
     );
 };
 
